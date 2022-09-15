@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% endblock nav %}
+{% block main %}
+		<div class="content-body" style="margin-top: 50px">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-12">
+						<h1 class="page-title">注册</h1>
+						<article class="post">
+							<div class="entry-content clearfix">
+								<form action="#" method="post" class="contact-form">
+                                    {% csrf_token %}
+									<div class="row">
+										<div class="col-md-6 col-md-offset-3">
+											{{ form }}
+											<button class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>提交</span></button>
+										</div>
+									</div>	<!-- row -->
+								</form>
+							</div>
+						</article>
+					</main>
+				</div>
+			</div>
+		</div>
+
+{% endblock main %}
+		<!-- Mobile Menu -->
+{% block rightside %}
+{% endblock rightside %}
+
+		<script src="js/script.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,16 @@
+asgiref==3.5.0
+Django==2.2.3
+django-mdeditor==0.1.20
+Faker==13.3.1
+importlib-metadata==4.11.2
+Markdown==3.3.6
+mysqlclient==2.1.0
+Pygments==2.11.2
+python-dateutil==2.8.2
+pytz==2021.3
+six==1.16.0
+sqlparse==0.4.2
+typing_extensions==4.1.1
+zipp==3.7.0
+
+django-simple-captcha~=0.5.17

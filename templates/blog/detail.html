@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load comments_extras %}
+{% block main %}
+{#设置弹出确认框#}
+<script>
+function confirmAct()
+{
+    if(confirm('确定要执行此操作吗?'))
+    {
+        return true;
+    }
+    return false;
+}
+</script>
+
+
+    {% if request.session.is_login %}
+    <div class="comment-form">
+    <div class="col-md-12">
+    <a href="{% url 'more:post_update' post.pk %}"><button  class="comment-btn" >编辑</button></a>
+    <a onclick="return confirmAct();" href="{% url 'more:post_delete' post.pk %}"><button  class="comment-btn" onclick="alertTips()">删除</button></a>
+
+    </div>
+    </div>
+    {% endif %}
+<article class="post post-{{ post.pk }}">
+        <header class="entry-header">
+            <h1 class="entry-title">{{ post.title }}</h1>
+            <div class="entry-meta">
+                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                <span class="post-date"><a href="#"><time class="entry-date"
+                                                          datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                <span class="comments-link"><a href="#comment-area ">{{ post.comments_set.count }} 评论</a></span>
+                <span class="views-count"><a href="#">{{ post.view }} 阅读</a></span>
+            </div>
+        </header>
+        <div class="entry-content clearfix ">
+            {{ post.body|safe }}
+        </div>
+    </article>
+<section class="comment-area" id="comment-area">
+        <hr>
+        <h3>发表评论</h3>
+
+        {% show_comments_form  post %}
+
+        <div class="comment-list-panel">
+            {% show_comments_list post %}
+        </div>
+
+
+    </section>
+{% endblock main %}
+
+
+
+{% block toc %}
+  {% if post.toc %}
+    <div class="widget widget-content">
+      <h3 class="widget-title">文章目录</h3>
+      <div class="toc">
+        <ul>
+          {{ post.toc|safe }}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endblock toc %}
+

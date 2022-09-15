@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% endblock nav %}
+{% block main %}
+		<div class="content-body" style="margin-top: 50px">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-12">
+						<h1 class="page-title">登录</h1>
+						<article class="post">
+							<div class="entry-content clearfix">
+								<form action="{% url 'more:login' %}" method="post" class="contact-form">
+                                    {% csrf_token %}
+									<div class="row">
+										<div class="col-md-6 col-md-offset-3">
+
+                                            {{ form.username }}
+
+                                            {{ form.password }}
+
+                                            {{ form.captcha }}
+
+{#                                            <input type="text" name="name" placeholder="用户名" required="">#}
+{#                                            <label for="id_username">用户名:</label>#}
+{#                                            <input type="text" name="username" class="form-control" placeholder="Username" autofocus="" maxlength="128" required="" id="id_username">#}
+
+                                            <button class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>登录</span></button>
+
+
+										</div>
+
+									</div>	<!-- row -->
+
+								</form>
+							</div>
+						</article>
+					</main>
+				</div>
+			</div>
+		</div>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright"><a href="{% url 'more:register' %}" style="color: red">没有账号？去注册</a></p>
+                        <p class="copyright"><a href="{% url 'more:findpwd' %}" style="color: red">忘记密码？</a></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+{% endblock main %}
+		<!-- Mobile Menu -->
+{% block rightside %}
+{% endblock rightside %}
+
+		<script src="js/script.js"></script>
+{#验证码刷新#}
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+<script>
+     //点击刷新验证码
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+<script>
+     //点击刷新验证码
+    $(function () {
+        $('.captcha').css({
+            'cursor': 'pointer'
+        });
+        // ajax刷新
+        $('.captcha').click(function () {
+            console.log('click');
+            $.get("{% url 'captcha-refresh' %}",
+                function (result) {
+                    $('.captcha').attr('src', result['image_url']);
+                    $('#id_captcha_1').val(result['key'])
+                });
+        });
+    })
+</script>
+</script>
+	</body>
+</html>
